@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00. MainGame">
+      <UniqueIdentifier>{111a0e4f-de5d-4515-8768-b9fdf902ebca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj">
+      <UniqueIdentifier>{49f72e48-cb18-4e5b-bde9-39646156909b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\00. Player">
+      <UniqueIdentifier>{58ecdfc2-7d98-45bd-adc0-4b6da870234f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet">
+      <UniqueIdentifier>{d11767fc-1090-4158-aa4f-688c6f73cdc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\02.Monster">
+      <UniqueIdentifier>{0417033f-97b8-4ad5-94e2-3158d899edbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design">
+      <UniqueIdentifier>{23dadd1a-7903-4877-acd5-7c350cb5183a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\01. CollisionMgr">
+      <UniqueIdentifier>{588b0224-4112-48e1-b7e7-2cb2bc30e03a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Design\00. Abstract Factory">
+      <UniqueIdentifier>{e16538d7-1e99-4f74-83f3-53602c3834b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\00. Basic Bullet">
+      <UniqueIdentifier>{d1f4826a-1f69-4bc8-8370-e19d2e167b55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03.Skill">
+      <UniqueIdentifier>{4c7929d1-1c18-440a-8c2f-f729decb42fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\01.SideBullet">
+      <UniqueIdentifier>{09b5ca0c-79d1-48bf-ac04-bbea57d95bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03.Skill\00.Wave">
+      <UniqueIdentifier>{bb5750a8-816f-4b33-b864-c0ffce93b3fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03.Skill\01.Shield">
+      <UniqueIdentifier>{cedf6811-088b-4ee1-8df0-8542ea4362b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\03.Skill\02.Bomb">
+      <UniqueIdentifier>{b5e5a1f2-6dba-4f6b-9f46-0adad988fb58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultWindow.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>00. MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>01. Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>01. Obj\02.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>02. Design\01. CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>02. Design\00. Abstract Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicBullet.h">
+      <Filter>01. Obj\01. Bullet\00. Basic Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>01. Obj\03.Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="SideBullet.h">
+      <Filter>01. Obj\01. Bullet\01.SideBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave.h">
+      <Filter>01. Obj\03.Skill\00.Wave</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
+      <Filter>01. Obj\03.Skill\02.Bomb</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultWindow.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>00. MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>01. Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01. Obj\00. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>01. Obj\02.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>02. Design\01. CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicBullet.cpp">
+      <Filter>01. Obj\01. Bullet\00. Basic Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>01. Obj\03.Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="SideBullet.cpp">
+      <Filter>01. Obj\01. Bullet\01.SideBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave.cpp">
+      <Filter>01. Obj\03.Skill\00.Wave</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>01. Obj\03.Skill\02.Bomb</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DefaultWindow.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="DefaultWindow.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
