@@ -31,6 +31,10 @@ int CPlayer::Update()
    return OBJ_NOEVENT;
 }
 
+void CPlayer::Late_Update()
+{
+}
+
 
 void CPlayer::Render(HDC hDC)
 {

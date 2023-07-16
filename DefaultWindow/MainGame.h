@@ -3,7 +3,8 @@
 #include "Define.h"
 #include "Player.h"
 #include "AbstractFactory.h"
-#include"CollisionMgr.h"
+#include "CollisionMgr.h"
+#include "CMonster.h"
 
 class CMainGame
 {
@@ -18,11 +19,19 @@ public:
 	void		Release(void);
 	void		LateUpdate(void);
 
+public:
+	void		RendMission(int _Stage); // 미션 표기 함수
+
+
 private:
 	list<CObj*>		m_ObjList[OBJ_END];
 	int             m_iStage;
 
-	HDC			m_DC;
+	int				m_iMissionCount;
+	int				m_iMission_TargetCount;
+	bool			m_bMissionClear;
+
+	HDC				m_DC;
 
 
 private:

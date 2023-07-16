@@ -13,6 +13,8 @@ public:
 		m_tInfo.fX = _fX;
 		m_tInfo.fY = _fY;
 	}
+	void	Set_Direction(DIRECTION eDir) { m_eDir = eDir; }
+
 
 public:
 	virtual void		Initialize()	PURE;
@@ -21,6 +23,7 @@ public:
 	virtual void		Release()		PURE;
 	virtual void		Late_Update();
 
+	INFO	Get_Info() { return m_tInfo; }
 	virtual RECT		GetRect();
 	void	Set_Dead() { m_bDead = true; }
 
@@ -30,6 +33,7 @@ protected:
 protected:
 	INFO		m_tInfo;
 	RECT		m_tRect;
+	DIRECTION	m_eDir;
 
 	bool		m_bDead;
 	float		m_fSpeed;

@@ -2,7 +2,7 @@
 #include "MainGame.h"
 
 CMainGame::CMainGame()
-	: m_iStage(1)
+	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(30), m_bMissionClear(false)
 {
 }
 
@@ -38,12 +38,30 @@ void CMainGame::Update(void)
 			{
 				Safe_Delete<CObj*>(*iter);
 				iter = m_ObjList[i].erase(iter);
+
+				if (i == OBJ_MONSTER) // 사망처리된 오프젝트가 몬스터일때 미션카운팅
+					++m_iMissionCount;
 			}
 			else
 				++iter;
 		}
 	}
-
+	if (rand() % 200 < 1)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, OUTLINE * 0.5f, DIR_DOWN));
+	}
+	if (rand() % 200 < 1)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(OUTLINE * 0.5f, rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, DIR_RIGHT));
+	}
+	if (rand() % 200 < 1)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, WINCY - (OUTLINE * 0.5f), DIR_UP));
+	}
+	if (rand() % 200 < 1)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(WINCX - (OUTLINE * 0.5f), rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, DIR_LEFT));
+	}
 	LateUpdate();
 
 }
@@ -70,19 +88,54 @@ void CMainGame::Render(void)
 	Rectangle(m_DC, 0, 0, WINCX, 100);
 	Rectangle(m_DC, 0, 500, WINCX, WINCY);
 
+	RendMission(1);
+
+
 
 }
 
 
 void CMainGame::LateUpdate(void)
 {
+
+	for (size_t i = 0; i < OBJ_END; ++i)
+	{
+		for (auto& iter : m_ObjList[i])
+			iter->Late_Update();
+	}
+
 	CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc1, BT_BASIC);
 	CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc2, BT_TWOWAY);
 	CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc3, BT_TRIPLE);
-
 	CCollisionMgr::tempCollision2(m_ObjList[OBJ_PLAYERBULLET], rc3);
 
+	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_PLAYERBULLET], m_ObjList[OBJ_MONSTER]);
 
+
+
+}
+
+void CMainGame::RendMission(int _Stage)
+{
+	TCHAR		szMission[32] = L"";
+
+	wsprintf(szMission, L"미션 : 몬스터 처치");
+	TextOut(m_DC, 10, 50, szMission, lstrlen(szMission));
+
+	switch (_Stage)
+	{
+	case 1:
+		wsprintf(szMission, L"%d / %d", m_iMissionCount, m_iMission_TargetCount);
+		TextOut(m_DC, 10, 70, szMission, lstrlen(szMission));
+		break;
+
+	case 2:
+		break;
+
+	case 3:
+		break;
+
+	}
 }
 
 void CMainGame::Release(void)

@@ -21,6 +21,18 @@ public:
 		return newObj;
 	};
 
+	template<typename T>
+	static CObj* Create_Obj(float _fX, float _fY, DIRECTION eDir = DIR_END)
+	{
+		CObj* pObj = new T;
+		pObj->Initialize();
+		pObj->Set_Pos(_fX, _fY);
+		pObj->Set_Direction(eDir);
+
+
+		return pObj;
+	}
+
 	static void CreateBullet(BULLETTYPE _btype, float _fx, float _fy,list<CObj*>* _li , DIRECTION _dir) {
 		CObj* newBullet;
 		switch (_btype)
