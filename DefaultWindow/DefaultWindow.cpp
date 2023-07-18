@@ -232,6 +232,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		InvalidateRect(hWnd, 0, TRUE);
 		break;*/
 
+	case WM_LBUTTONDOWN:
+
+		break;
+
+	case WM_LBUTTONUP:
+
+		break;
+
 	case WM_KEYDOWN:
 		switch (wParam)
 		{

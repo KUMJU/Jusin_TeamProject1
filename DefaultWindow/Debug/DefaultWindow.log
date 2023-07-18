@@ -1,34 +1,8 @@
-﻿  stdafx.cpp
-  BasicBullet.cpp
-  Bomb.cpp
-  Bullet.cpp
-  CMonster.cpp
-  CollisionMgr.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\CollisionMgr.cpp(14,16): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\CollisionMgr.cpp(15,17): warning C4244: '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  DefaultWindow.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\DefaultWindow.cpp(1,1): warning C4828: 파일에 0x2b8f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 949).
+﻿  MainGame.cpp
 C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(37,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
-  MainGame.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(37,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(51,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(55,141): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(59,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(63,151): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Obj.cpp
-  Player.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(37,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(21,28): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(22,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(66,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(74,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(82,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(89,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Player.cpp(97,32): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  SideBullet.cpp
-  Skill.cpp
-  Wave.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Wave.cpp(15,31): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\Wave.cpp(36,31): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(88,126): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(92,142): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(96,126): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(100,152): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(237): warning C4715: 'CMainGame::CheckChoice': 모든 제어 경로에서 값을 반환하지는 않습니다.
   DefaultWindow.vcxproj -> C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\Debug\DefaultWindow.exe

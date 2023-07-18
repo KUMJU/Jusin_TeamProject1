@@ -154,6 +154,7 @@
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
@@ -171,6 +172,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SideBullet.cpp" />

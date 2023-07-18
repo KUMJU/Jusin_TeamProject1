@@ -24,7 +24,7 @@ private:
 
 private:
 	list<CObj*>*		m_pBullet;
-	list<CObj*>* m_SkillSlot;
+	list<CObj*>*		m_SkillSlot;
 
 	BULLETTYPE			m_bType;
 	SKILLTYPE			m_skillType;

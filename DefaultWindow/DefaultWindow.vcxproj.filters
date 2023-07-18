@@ -55,6 +55,9 @@
     <Filter Include="01. Obj\03.Skill\02.Bomb">
       <UniqueIdentifier>{b5e5a1f2-6dba-4f6b-9f46-0adad988fb58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\04. Mouse">
+      <UniqueIdentifier>{1ba44962-bfdb-4d3c-9f93-e98deec17019}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -111,6 +114,9 @@
     <ClInclude Include="Bomb.h">
       <Filter>01. Obj\03.Skill\02.Bomb</Filter>
     </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>01. Obj\04. Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -151,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="Bomb.cpp">
       <Filter>01. Obj\03.Skill\02.Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>01. Obj\04. Mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
