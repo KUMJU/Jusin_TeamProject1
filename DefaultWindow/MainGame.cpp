@@ -24,6 +24,7 @@ void CMainGame::Initialize(void)
 	
 	m_ObjList[OBJ_MOUSE].push_back(CAbstractFactory::CreateObj<CMouse>());
 
+
 }
 
 void CMainGame::Update(void)
@@ -83,28 +84,8 @@ void CMainGame::Update(void)
 
 	if (!m_bMissionClear) //레밸업 이벤트떄는 몬스터 생성x
 	{
-		if (rand() % 200 < 5)
-		{
-			m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, OUTLINE * 0.5f, DIR_DOWN));
-		}
-		if (rand() % 200 < 5)
-		{
-			m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(OUTLINE * 0.5f, rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, DIR_RIGHT));
-		}
-		if (rand() % 200 < 5)
-		{
-			m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, WINCY - (OUTLINE * 0.5f), DIR_UP));
-		}
-		if (rand() % 200 < 5)
-		{
-			m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(WINCX - (OUTLINE * 0.5f), rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, DIR_LEFT));
-		}
+		CreateMonster();
 	}
-
-	//if (!m_bMissionClear)
-	//{
-		LateUpdate();
-	//}
 }
 
 void CMainGame::Render(void)
@@ -153,6 +134,8 @@ void CMainGame::LateUpdate(void)
 
 
 	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_PLAYERBULLET], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MOSTERBULLET]);
 	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MONSTER]);
 	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MOSTERBULLET]);
 
@@ -191,9 +174,6 @@ void CMainGame::RendChoiceBox()
 		Rectangle(m_DC, 600, 15, 670, 85);
 		Rectangle(m_DC, 680, 15, 750, 85);
 
-		//Rectangle(m_DC, OUTLINE + 15, OUTLINE + 30, OUTLINE + 15 + 180, WINCY - (OUTLINE + 20));
-		//Rectangle(m_DC, OUTLINE + 195 + 15, OUTLINE + 30, OUTLINE + 195 + 15 + 180, WINCY - (OUTLINE + 20));
-		//Rectangle(m_DC, OUTLINE + 390 + 15, OUTLINE + 30, OUTLINE + 390 + 15 + 180, WINCY - (OUTLINE + 20));
 
 		TCHAR		szMission[32] = L"";
 
@@ -246,17 +226,48 @@ int CMainGame::CheckChoice()
 
 void CMainGame::ReleaseMonster()
 {
-	for_each(m_ObjList[OBJ_MONSTER].begin(), m_ObjList[OBJ_MONSTER].end(), DeleteObj());
-	m_ObjList[OBJ_MONSTER].clear();
+	if (!m_ObjList[OBJ_MONSTER].empty()) {
+		for_each(m_ObjList[OBJ_MONSTER].begin(), m_ObjList[OBJ_MONSTER].end(), DeleteObj());
+		m_ObjList[OBJ_MONSTER].clear();
+	}
+
+	if (!m_ObjList[OBJ_MOSTERBULLET].empty()) {
+		for_each(m_ObjList[OBJ_MOSTERBULLET].begin(), m_ObjList[OBJ_MONSTER].end(), DeleteObj());
+		m_ObjList[OBJ_MOSTERBULLET].clear();
+	}
+}
+
+void CMainGame::CreateMonster()
+{
+
+	if (rand() % 400 < 3)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, OUTLINE * 0.5f, rand() % m_iStage + 1));
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
+	}
+	if (rand() % 400 < 3)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(OUTLINE * 0.5f, rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, rand() % m_iStage + 1));
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
+	}
+	if (rand() % 400 < 3)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, WINCY - (OUTLINE * 0.5f), rand() % m_iStage + 1));
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
+	}
+	if (rand() % 400 < 3)
+	{
+		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(WINCX - (OUTLINE * 0.5f), rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, rand() % m_iStage + 1));
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
+		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
+	}
 }
 
 void CMainGame::Release(void)
 {
-	//Safe_Delete<CObj*>(m_ObjList[OBJ_PLAYER].front());
-
-	//for_each(m_ObjList[OBJ_PLAYERBULLET].begin(), m_ObjList[OBJ_PLAYERBULLET].end(), DeleteObj());
-	//m_ObjList[OBJ_PLAYERBULLET].clear();
-
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for_each(m_ObjList[i].begin(), m_ObjList[i].end(), DeleteObj());

@@ -57,8 +57,8 @@ void CBullet::Release()
 
 void CBullet::Late_Update()
 {
-	if (m_tRect.left <= 100 || m_tRect.top <= 100 ||
-		m_tRect.right >= WINCX - 100 || m_tRect.bottom >= WINCY - 100) {
+	if (m_tRect.left <= 0 || m_tRect.top <= 0 ||
+		m_tRect.right >= WINCX || m_tRect.bottom >= WINCY ) {
 
 		__super::Set_Dead();
 	}

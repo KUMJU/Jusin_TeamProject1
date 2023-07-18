@@ -46,3 +46,17 @@ void CCollisionMgr::PlayerCollision(CObj* Dst, list<CObj*> Src)
 		}
 	}
 }
+
+void CCollisionMgr::SkillCollision(list < CObj*> Dst, list<CObj*> Src)
+{
+	for (auto& DstList : Dst)
+	{
+		for (auto& SrcList : Src)
+		{
+			if (Check_Sphere(DstList, SrcList))
+			{
+				SrcList->Set_Dead();
+			}
+		}
+	}
+}

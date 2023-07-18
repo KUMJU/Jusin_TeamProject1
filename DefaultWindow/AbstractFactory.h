@@ -23,13 +23,21 @@ public:
 	};
 
 	template<typename T>
-	static CObj* Create_Obj(float _fX, float _fY, DIRECTION eDir = DIR_END)
+	static CObj* Create_Obj(float _fX, float _fY)
 	{
 		CObj* pObj = new T;
 		pObj->Initialize();
 		pObj->Set_Pos(_fX, _fY);
-		pObj->Set_Direction(eDir);
 
+		return pObj;
+	}
+
+	template<typename T>
+	static CObj* Create_Obj(float _fX, float _fY, int _type)
+	{
+		CObj* pObj = new T(_type);
+		pObj->Initialize();
+		pObj->Set_Pos(_fX, _fY);
 
 		return pObj;
 	}

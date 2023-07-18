@@ -65,7 +65,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,			// 메모리에 할당되는 실체, 즉 
 	MainGame.Initialize();
 
 	// 운영체제가 시작된 후로 흐른 시간을 정수 형태로 반환하는 함수
-	DWORD	dwTime = GetTickCount();	// 1 / 1000초의 정수 값을 반환
+	DWORD	dwTime = (DWORD)GetTickCount64();	// 1 / 1000초의 정수 값을 반환
 	// 200
 
 	while (true)
@@ -91,12 +91,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,			// 메모리에 할당되는 실체, 즉 
 		}
 		else
 		{
-			if (dwTime + 10 < GetTickCount())
+			if (dwTime + 10 < (DWORD)GetTickCount64())
 			{
 				MainGame.Update();
 				MainGame.Render();
+				MainGame.LateUpdate();
 
-				dwTime = GetTickCount();
+				dwTime = (DWORD)GetTickCount64();
 			}		
 		}		
 	}
