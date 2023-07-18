@@ -5,7 +5,7 @@
 #include"Wave.h"
 #include"Bomb.h"
 
-CPlayer::CPlayer() : m_pBullet(nullptr) , m_bType(BT_BASIC), m_debTime(0) , m_skillCool(0) , m_skillType(ST_WAVE) , m_iLife(3)
+CPlayer::CPlayer() : m_pBullet(nullptr) , m_bType(BT_BASIC), m_debTime(0) , m_skillCool(0) , m_skillType(ST_WAVE) , m_iLife(3), m_Skill_Level(1)
 {
 	m_bIsPlr = true;
 
@@ -129,11 +129,21 @@ void CPlayer::Key_Input(void)
 
 	if (GetAsyncKeyState('R'))
 	{
-		if (m_skillCool + 1000 < GetTickCount64()) {
-			m_SkillSlot->push_back(CAbstractFactory::CreateObj<CWave>());
-			m_skillCool = GetTickCount64();
+		if (m_Skill_Level == 1)
+		{
+			if (m_skillCool + 1000 < GetTickCount64()) {
+				m_SkillSlot->push_back(CAbstractFactory::CreateObj<CBomb>());
+				m_skillCool = GetTickCount64();
 
+			}
+		}
+		else if (m_Skill_Level == 2)
+		{
+			if (m_skillCool + 1000 < GetTickCount64()) {
+				m_SkillSlot->push_back(CAbstractFactory::CreateObj<CWave>());
+				m_skillCool = GetTickCount64();
+
+			}
 		}
 	}
-
 }

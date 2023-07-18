@@ -21,6 +21,7 @@ public:
 	void	OnAttacked();
 	void	CheckPlayerPosition();
 	int		GetLife() { return m_iLife; };
+	void	UP_SkillLevel() { m_Skill_Level = 2; };
 
 private:
 	void	Key_Input(void);
@@ -37,6 +38,8 @@ private:
 
 	int					m_iLife;
 	COLORREF			m_PlrColor;
+
+	int					m_Skill_Level;
 
 
 };

@@ -5,7 +5,7 @@ SideBullet::SideBullet(DIRECTION _dir, float _position, bool _isPlr)
 {
 	m_Dir = _dir;
 	m_fPosition = _position;
-
+	m_bIsPlr = _isPlr;
 }
 
 SideBullet::~SideBullet()
@@ -22,18 +22,18 @@ int SideBullet::Update()
 	{
 	case DIR_LEFT:
 		m_tInfo.fX -= m_fSpeed;
-		m_tInfo.fY -= m_fSpeed * (m_fPosition);
+		m_tInfo.fY -= (m_fSpeed - 5) * (m_fPosition);
 		break;
 	case DIR_DOWN:
-		m_tInfo.fX += m_fSpeed * (m_fPosition);
+		m_tInfo.fX += (m_fSpeed - 5) * (m_fPosition);
 		m_tInfo.fY += m_fSpeed;
 		break;
 	case DIR_RIGHT:
 		m_tInfo.fX += m_fSpeed;
-		m_tInfo.fY -= m_fSpeed * (m_fPosition);
+		m_tInfo.fY -= (m_fSpeed - 5) * (m_fPosition);
 		break;
 	case DIR_UP:
-		m_tInfo.fX += (m_fSpeed - 5)*(m_fPosition);
+		m_tInfo.fX += (m_fSpeed - 5) * (m_fPosition);
 		m_tInfo.fY -= m_fSpeed;
 		break;
 	default:

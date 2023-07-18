@@ -51,16 +51,21 @@ public:
 			_li->push_back(CreateBasic(_dir, _fx, _fy, 0.f, _isPlr));
 			break;
 		case BT_TWOWAY:
-			_li->push_back(CreateRef(_dir, _fx, _fy, 1.f, _isPlr));
-				_li->push_back(CreateBasic(_dir, _fx, _fy, -1.f, _isPlr));
+			_li->push_back(CreateBasic(_dir, _fx, _fy, 1.f, _isPlr));
+			_li->push_back(CreateBasic(_dir, _fx, _fy, -1.f, _isPlr));
 			break;
 		case BT_TRIPLE:
 			_li->push_back(CreateBasic(_dir, _fx, _fy, 0.f, _isPlr));
 			_li->push_back(CreateSide(_dir, _fx, _fy, 1.f, _isPlr));
 			_li->push_back(CreateSide(_dir, _fx, _fy, -1.f, _isPlr));
 			break;
-		case BT_REF:
+		case BT_REF_BASIC:
 			_li->push_back(CreateRef(_dir, _fx, _fy, 0.f, _isPlr));
+			break;
+		case BT_REF_TWOWAY:
+			_li->push_back(CreateRef(_dir, _fx, _fy, 1.f, _isPlr));
+			_li->push_back(CreateRef(_dir, _fx, _fy, -1.f, _isPlr));
+			break;
 		default:
 			break;
 		}

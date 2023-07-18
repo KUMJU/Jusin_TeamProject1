@@ -7,7 +7,6 @@ BasicBullet::BasicBullet(DIRECTION _dir, float _position, bool _isPlr)
 	m_fPosition = _position;
 	m_bIsPlr = _isPlr;
 }
-
 BasicBullet::~BasicBullet()
 {
 }

@@ -24,9 +24,11 @@ public:
 public:
 	void		RendMission(int _Stage); // 미션 표기 함수
 	void		RendChoiceBox();	// 파워업 선택창 표기
-	int			CheckChoice();	// 파워업 체크
+	void		CheckChoice();	// 파워업 체크
 	void		ReleaseMonster(); // 몬스터 전멸
-	void		CreateMonster();
+	void		CreateMonster(); // 몬스터 생성
+	void		PowerUpManager(); // 파워업 관리
+
 
 
 private:
@@ -36,6 +38,7 @@ private:
 	int				m_iMission_TargetCount;
 	bool			m_bMissionClear;
 	int				m_iPowerSelect;
+	int				m_iPowerLevel_Bullet, m_iPowerLevel_Quality;
 
 	HDC				m_DC;
 

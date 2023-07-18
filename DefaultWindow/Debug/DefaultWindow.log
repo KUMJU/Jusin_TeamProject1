@@ -1,8 +1,7 @@
 ﻿  MainGame.cpp
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(47,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(243,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(249,141): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(255,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(261,151): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(225): warning C4715: 'CMainGame::CheckChoice': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  DefaultWindow.vcxproj -> C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\Debug\DefaultWindow.exe
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(47,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(219,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(225,141): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(231,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(237,151): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DefaultWindow.vcxproj -> C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\Debug\DefaultWindow.exe

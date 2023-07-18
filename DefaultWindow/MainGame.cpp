@@ -2,7 +2,7 @@
 #include "MainGame.h"
 
 CMainGame::CMainGame()
-	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(20), m_bMissionClear(false)
+	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(20), m_bMissionClear(false), m_iPowerSelect(0), m_iPowerLevel_Bullet(1), m_iPowerLevel_Quality(1)
 {
 }
 
@@ -65,21 +65,8 @@ void CMainGame::Update(void)
 	if (m_bMissionClear)
 	{
 		CheckChoice();
-		if (m_iPowerSelect == 1)
-		{
-			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_BASIC);
-			m_iPowerSelect = 0;
-		}
-		if (m_iPowerSelect == 2)
-		{
-			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_TWOWAY);
-			m_iPowerSelect = 0;
-		}
-		if (m_iPowerSelect == 3)
-		{
-			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_TRIPLE);
-			m_iPowerSelect = 0;
-		}
+		PowerUpManager();
+
 	}
 
 	if (!m_bMissionClear) //레밸업 이벤트떄는 몬스터 생성x
@@ -170,24 +157,21 @@ void CMainGame::RendChoiceBox()
 {
 	if (m_bMissionClear)
 	{
-		Rectangle(m_DC, 520, 15, 590, 85);
 		Rectangle(m_DC, 600, 15, 670, 85);
 		Rectangle(m_DC, 680, 15, 750, 85);
 
+		TCHAR	szMission[32] = L"Add Bullet";
+		RECT	rc{ 602, 15, 670, 85 };
+		DrawText(m_DC, szMission, lstrlen(szMission), &rc, DT_VCENTER | DT_SINGLELINE);
 
-		TCHAR		szMission[32] = L"";
-
-		wsprintf(szMission, L"1");
-		TextOut(m_DC, 535, 50, szMission, lstrlen(szMission));
-		wsprintf(szMission, L"2");
-		TextOut(m_DC, 615, 50, szMission, lstrlen(szMission));
-		wsprintf(szMission, L"3");
-		TextOut(m_DC, 695, 50, szMission, lstrlen(szMission));
+		TCHAR	szMission_2[32] = L"Power Up";
+		RECT	rc_2{ 685, 15, 750, 85 };
+		DrawText(m_DC, szMission_2, lstrlen(szMission_2), &rc_2, DT_VCENTER | DT_SINGLELINE);
 	}
 
 }
 
-int CMainGame::CheckChoice()
+void CMainGame::CheckChoice()
 {
 	if (GetAsyncKeyState(MK_LBUTTON))
 	{
@@ -199,27 +183,17 @@ int CMainGame::CheckChoice()
 		float fX = (float)ptMouse.x;
 		float fY = (float)ptMouse.y;
 
-		if ( (520 <fX)&&(fX<590)&&(15<fY)&&(fY<85) )
+
+		if ((600 < fX) && (fX < 670) && (15 < fY) && (fY < 85))
 		{
 			m_bMissionClear = false;
 			m_iPowerSelect = 1;
-			//Initialize();
-			return m_iPowerSelect;
-		}
-		else if ((600 < fX) && (fX < 670) && (15 < fY) && (fY < 85))
-		{
-			m_bMissionClear = false;
-			m_iPowerSelect = 2;
-			//Initialize();
 
-			return m_iPowerSelect;
 		}
 		else if ((680 < fX) && (fX < 750) && (15 < fY) && (fY < 85))
 		{
 			m_bMissionClear = false;
-			m_iPowerSelect = 3;
-			//Initialize();
-			return m_iPowerSelect;
+			m_iPowerSelect = 2;
 		}
 	}
 }
@@ -232,7 +206,7 @@ void CMainGame::ReleaseMonster()
 	}
 
 	if (!m_ObjList[OBJ_MOSTERBULLET].empty()) {
-		for_each(m_ObjList[OBJ_MOSTERBULLET].begin(), m_ObjList[OBJ_MONSTER].end(), DeleteObj());
+		for_each(m_ObjList[OBJ_MOSTERBULLET].begin(), m_ObjList[OBJ_MOSTERBULLET].end(), DeleteObj());
 		m_ObjList[OBJ_MOSTERBULLET].clear();
 	}
 }
@@ -240,29 +214,73 @@ void CMainGame::ReleaseMonster()
 void CMainGame::CreateMonster()
 {
 
-	if (rand() % 400 < 3)
+	if (rand() % 1000 < 4)
 	{
 		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, OUTLINE * 0.5f, rand() % m_iStage + 1));
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
 	}
-	if (rand() % 400 < 3)
+	if (rand() % 1000 < 4)
 	{
 		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(OUTLINE * 0.5f, rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, rand() % m_iStage + 1));
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
 	}
-	if (rand() % 400 < 3)
+	if (rand() % 1000 < 4)
 	{
 		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(rand() % (WINCX - (OUTLINE * 2) - (50)) + OUTLINE + 25, WINCY - (OUTLINE * 0.5f), rand() % m_iStage + 1));
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
 	}
-	if (rand() % 400 < 3)
+	if (rand() % 1000 < 4)
 	{
 		m_ObjList[OBJ_MONSTER].push_back(CAbstractFactory::Create_Obj<CMonster>(WINCX - (OUTLINE * 0.5f), rand() % (WINCY - (OUTLINE * 2) - (50)) + OUTLINE + 25, rand() % m_iStage + 1));
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_PlrList(m_ObjList[OBJ_PLAYER].front());
 		dynamic_cast<CMonster*>(m_ObjList[OBJ_MONSTER].back())->Set_BulletList(&m_ObjList[OBJ_MOSTERBULLET]);
+	}
+}
+
+void CMainGame::PowerUpManager()
+{
+	if (m_iPowerSelect == 1)
+	{
+		++m_iPowerLevel_Bullet;
+	}
+	else if (m_iPowerSelect == 2)
+	{
+		++m_iPowerLevel_Quality;
+	}
+
+	if (m_iStage == 2)
+	{
+		if (m_iPowerLevel_Bullet == 1 && m_iPowerLevel_Quality == 2)
+		{
+			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_REF_BASIC);
+			m_iPowerSelect = 0;
+		}
+		else if (m_iPowerLevel_Bullet == 2 && m_iPowerLevel_Quality == 1)
+		{
+			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_TWOWAY);
+			m_iPowerSelect = 0;
+		}
+	}
+	else if (m_iStage == 3)
+	{
+		if (m_iPowerLevel_Bullet == 1 && m_iPowerLevel_Quality == 3)
+		{
+			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->UP_SkillLevel();
+		}
+		else if (m_iPowerLevel_Bullet == 2 && m_iPowerLevel_Quality == 2)
+		{
+			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_REF_TWOWAY);
+			m_iPowerSelect = 0;
+		}
+		else if (m_iPowerLevel_Bullet == 3 && m_iPowerLevel_Quality == 1)
+		{
+			dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->Set_BulletType(BT_TRIPLE);
+			m_iPowerSelect = 0;
+		}
+
 	}
 }
 
