@@ -16,7 +16,7 @@ public:
 	~CMainGame();
 public:
 	void		Initialize(void);
-	void		Update(void);
+	int			Update(void);
 	void		Render(void);
 	void		Release(void);
 	void		LateUpdate(void);
@@ -39,6 +39,8 @@ private:
 	bool			m_bMissionClear;
 	int				m_iPowerSelect;
 	int				m_iPowerLevel_Bullet, m_iPowerLevel_Quality;
+
+	int				m_iCurrentState;
 
 	HDC				m_DC;
 

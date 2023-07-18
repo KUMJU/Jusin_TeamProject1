@@ -123,6 +123,9 @@
     <ClInclude Include="ReflectBullet.h">
       <Filter>01. Obj\01. Bullet\02.ReflectionBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>01. Obj\03.Skill\01.Shield</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="ReflectBullet.cpp">
       <Filter>01. Obj\01. Bullet\02.ReflectionBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>01. Obj\03.Skill\01.Shield</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

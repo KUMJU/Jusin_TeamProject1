@@ -15,7 +15,7 @@ void CWave::Initialize()
 	m_dDelayTime = GetTickCount64();
 	m_tInfo.fCX = 100.f;
 	m_tInfo.fCY = 400.f;
-	m_tInfo.fX = 100.f;
+	m_tInfo.fX = 0.f;
 	m_tInfo.fY = 300.f;
 }
 

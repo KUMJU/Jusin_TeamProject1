@@ -44,7 +44,6 @@ public:
 
 
 	static void CreateBullet(BULLETTYPE _btype, float _fx, float _fy, list<CObj*>* _li, DIRECTION _dir, bool _isPlr) {
-		CObj* newBullet;
 		switch (_btype)
 		{
 		case BT_BASIC:

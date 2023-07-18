@@ -40,6 +40,7 @@ private:
 	COLORREF			m_PlrColor;
 
 	int					m_Skill_Level;
+	PLAYERSTATE			m_iPlrState;
 
 
 };

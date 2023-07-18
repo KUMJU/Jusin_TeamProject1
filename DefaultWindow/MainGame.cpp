@@ -2,7 +2,7 @@
 #include "MainGame.h"
 
 CMainGame::CMainGame()
-	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(20), m_bMissionClear(false), m_iPowerSelect(0), m_iPowerLevel_Bullet(1), m_iPowerLevel_Quality(1)
+	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(20), m_bMissionClear(false), m_iPowerSelect(0), m_iPowerLevel_Bullet(1), m_iPowerLevel_Quality(1) , m_iCurrentState(GS_PLAYING)
 {
 }
 
@@ -27,35 +27,45 @@ void CMainGame::Initialize(void)
 
 }
 
-void CMainGame::Update(void)
+int CMainGame::Update(void)
 {
+	if (GS_GAMEOVER == m_iCurrentState) {
+		return GS_GAMEOVER;
+	}
+
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
-		for (auto iter = m_ObjList[i].begin();
+		for (auto iter = m_ObjList [i].begin();
 			iter != m_ObjList[i].end(); )
 		{
 			int	iResult = (*iter)->Update();
 
 			if (OBJ_DEAD == iResult)
 			{
-				Safe_Delete<CObj*>(*iter);
-				iter = m_ObjList[i].erase(iter);
+				if (i == OBJ_PLAYER) {
+					m_iCurrentState = GS_GAMEOVER;
+					return GS_GAMEOVER;
+				}
+				else{
+					Safe_Delete<CObj*>(*iter);
+					iter = m_ObjList[i].erase(iter);
 
-				if (i == OBJ_MONSTER) // 사망처리된 오프젝트가 몬스터일때 미션카운팅
-				{
-					++m_iMissionCount;
-
-					if (m_iMissionCount == m_iMission_TargetCount)
+					if (i == OBJ_MONSTER) // 사망처리된 오프젝트가 몬스터일때 미션카운팅
 					{
-						m_bMissionClear = true;
-						ReleaseMonster();
-						++m_iStage;;
-						m_iMission_TargetCount += 20;
-						m_iMissionCount = 0;
-						break;
+						++m_iMissionCount;
+
+						if (m_iMissionCount == m_iMission_TargetCount)
+						{
+							m_bMissionClear = true;
+							ReleaseMonster();
+							++m_iStage;;
+							m_iMission_TargetCount += 20;
+							m_iMissionCount = 0;
+							break;
+						}
 					}
-				}		
+				}
 			}
 			else
 				++iter;
@@ -73,38 +83,49 @@ void CMainGame::Update(void)
 	{
 		CreateMonster();
 	}
+
+	return GS_PLAYING;
 }
 
 void CMainGame::Render(void)
 {
 
-	Rectangle(m_DC, 0, 0, WINCX, WINCY);
+	if (GS_PLAYING == m_iCurrentState) {
+		Rectangle(m_DC, 0, 0, WINCX, WINCY);
 
-	for (size_t i = 0; i < OBJ_MOUSE; ++i)
-	{
-		for (auto& iter : m_ObjList[i])
+		for (size_t i = 0; i < OBJ_MOUSE; ++i)
+		{
+			for (auto& iter : m_ObjList[i])
+				iter->Render(m_DC);
+		}
+
+		Rectangle(m_DC, 0, 0, 100, WINCY);
+		Rectangle(m_DC, WINCX - 100, 0, WINCX, WINCY);
+		Rectangle(m_DC, 0, 0, WINCX, 100);
+		Rectangle(m_DC, 0, 500, WINCX, WINCY);
+
+		RendChoiceBox();
+
+		for (auto& iter : m_ObjList[OBJ_MOUSE])
 			iter->Render(m_DC);
+
+		RendMission(1);
+
+		TCHAR		szLife[32] = L"";
+
+		wsprintf(szLife, L"라이프:");
+		TextOut(m_DC, 10, 30, szLife, lstrlen(szLife));
+
+		wsprintf(szLife, L"%d", dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->GetLife());
+		TextOut(m_DC, 65, 30, szLife, lstrlen(szLife));
 	}
-	
-	Rectangle(m_DC, 0, 0,100, WINCY);
-	Rectangle(m_DC, WINCX - 100, 0, WINCX, WINCY);
-	Rectangle(m_DC, 0, 0, WINCX, 100);
-	Rectangle(m_DC, 0, 500, WINCX, WINCY);
+	else {
 
-	RendChoiceBox();
+		Rectangle(m_DC, 0, 0, WINCX, WINCY);
+		TCHAR		szGameOver[32] = L"Game Over!";
+		TextOut(m_DC, WINCX*0.5f-50.f, WINCY*0.5, szGameOver, lstrlen(szGameOver));
 
-	for (auto& iter : m_ObjList[OBJ_MOUSE])
-		iter->Render(m_DC);
-
-	RendMission(1);
-
-	TCHAR		szLife[32] = L"";
-
-	wsprintf(szLife, L"라이프:");
-	TextOut(m_DC, 10, 30, szLife, lstrlen(szLife));
-
-	wsprintf(szLife, L"%d", dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->GetLife());
-	TextOut(m_DC, 65, 30, szLife, lstrlen(szLife));
+	}
 
 
 }
@@ -112,6 +133,14 @@ void CMainGame::Render(void)
 
 void CMainGame::LateUpdate(void)
 {
+
+	if (GS_GAMEOVER == m_iCurrentState) {
+
+		return;
+	}
+
+	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MOSTERBULLET]);
 
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
@@ -121,8 +150,6 @@ void CMainGame::LateUpdate(void)
 
 
 	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_PLAYERBULLET], m_ObjList[OBJ_MONSTER]);
-	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MONSTER]);
-	CCollisionMgr::SkillCollision(m_ObjList[OBJ_SKILL], m_ObjList[OBJ_MOSTERBULLET]);
 	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MONSTER]);
 	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MOSTERBULLET]);
 
@@ -155,6 +182,7 @@ void CMainGame::RendMission(int _Stage)
 
 void CMainGame::RendChoiceBox()
 {
+
 	if (m_bMissionClear)
 	{
 		Rectangle(m_DC, 600, 15, 670, 85);
@@ -204,6 +232,7 @@ void CMainGame::ReleaseMonster()
 		for_each(m_ObjList[OBJ_MONSTER].begin(), m_ObjList[OBJ_MONSTER].end(), DeleteObj());
 		m_ObjList[OBJ_MONSTER].clear();
 	}
+
 
 	if (!m_ObjList[OBJ_MOSTERBULLET].empty()) {
 		for_each(m_ObjList[OBJ_MOSTERBULLET].begin(), m_ObjList[OBJ_MOSTERBULLET].end(), DeleteObj());

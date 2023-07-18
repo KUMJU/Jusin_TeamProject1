@@ -5,7 +5,7 @@
 #include"Wave.h"
 #include"Bomb.h"
 
-CPlayer::CPlayer() : m_pBullet(nullptr) , m_bType(BT_BASIC), m_debTime(0) , m_skillCool(0) , m_skillType(ST_WAVE) , m_iLife(3), m_Skill_Level(1)
+CPlayer::CPlayer() : m_pBullet(nullptr), m_bType(BT_BASIC), m_debTime(0), m_skillCool(0), m_skillType(ST_WAVE), m_iLife(3), m_Skill_Level(1), m_iPlrState(PS_BASIC)
 {
 	m_bIsPlr = true;
 
@@ -28,21 +28,37 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
+
+	if (m_iLife <= 0) {
+
+		return OBJ_DEAD;
+
+	}
+
 	Key_Input();
 	CheckPlayerPosition();
 
-   __super::Update_Rect();
+	__super::Update_Rect();
 
-   return OBJ_NOEVENT;
+	if (PS_SUPERARMOR == m_iPlrState) {
+		if (m_dSuperArmorTime + 1500 < GetTickCount64()) {
+			m_iPlrState = PS_BASIC;
+			m_PlrColor = RGB(50, 50, 200);
+		}
+	}
+
+	return OBJ_NOEVENT;
 }
 
 void CPlayer::Late_Update()
 {
+
 }
 
 
 void CPlayer::Render(HDC hDC)
 {
+
 	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(m_PlrColor);
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
 	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
@@ -56,9 +72,13 @@ void CPlayer::Release()
 
 void CPlayer::OnAttacked()
 {
-	if (m_dSuperArmorTime + 500 < GetTickCount64()) {
-		--m_iLife;
-		m_dSuperArmorTime = GetTickCount64();
+	if (PS_SUPERARMOR != m_iPlrState) {
+		if (m_iLife > 0) {
+			--m_iLife;
+			m_iPlrState = PS_SUPERARMOR;
+			m_dSuperArmorTime = GetTickCount64();
+			m_PlrColor = RGB(255, 0, 0);
+		}
 	}
 }
 
@@ -134,7 +154,6 @@ void CPlayer::Key_Input(void)
 			if (m_skillCool + 1000 < GetTickCount64()) {
 				m_SkillSlot->push_back(CAbstractFactory::CreateObj<CBomb>());
 				m_skillCool = GetTickCount64();
-
 			}
 		}
 		else if (m_Skill_Level == 2)

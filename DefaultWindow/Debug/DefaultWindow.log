@@ -1,7 +1,12 @@
-﻿  MainGame.cpp
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\AbstractFactory.h(47,9): warning C4101: 'newBullet' :참조되지 않은 지역 변수입니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(219,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(225,141): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(231,125): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\DefaultWindow\MainGame.cpp(237,151): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  DefaultWindow.vcxproj -> C:\Users\dhqks\OneDrive\바탕 화면\팀과제\Jusin_TeamProject1\Debug\DefaultWindow.exe
+﻿  Player.cpp
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(21,36): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(25,28): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(26,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(79,38): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(123,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(131,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(139,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(146,30): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(156,33): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\DefaultWindow\Player.cpp(163,33): warning C4244: '=': 'ULONGLONG'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  DefaultWindow.vcxproj -> C:\Users\LG\Desktop\금주\학원 플젝\Jusin_TeamProject1\Debug\DefaultWindow.exe
