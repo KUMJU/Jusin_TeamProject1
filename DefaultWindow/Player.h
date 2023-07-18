@@ -25,10 +25,14 @@ public:
 
 private:
 	void	Key_Input(void);
+	CObj*	Create_Shield();
+
 
 private:
 	list<CObj*>*		m_pBullet;
 	list<CObj*>*		m_SkillSlot;
+	list<CObj*>*		m_pShield;
+
 
 	BULLETTYPE			m_bType;
 	SKILLTYPE			m_skillType;
@@ -41,6 +45,7 @@ private:
 
 	int					m_Skill_Level;
 	PLAYERSTATE			m_iPlrState;
+	float				m_fDistance;
 
 
 };

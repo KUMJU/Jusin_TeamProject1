@@ -2,7 +2,7 @@
 #include "MainGame.h"
 
 CMainGame::CMainGame()
-	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(20), m_bMissionClear(false), m_iPowerSelect(0), m_iPowerLevel_Bullet(1), m_iPowerLevel_Quality(1) , m_iCurrentState(GS_PLAYING)
+	: m_iStage(1), m_iMissionCount(0), m_iMission_TargetCount(15), m_bMissionClear(false), m_iPowerSelect(0), m_iPowerLevel_Bullet(1), m_iPowerLevel_Quality(1) , m_iCurrentState(GS_PLAYING)
 {
 }
 
@@ -57,10 +57,15 @@ int CMainGame::Update(void)
 
 						if (m_iMissionCount == m_iMission_TargetCount)
 						{
+							++m_iStage;
+							if (m_iStage == 4)
+							{
+								m_iCurrentState = GS_GAMEOVER;
+								return GS_GAMEOVER;
+							}
 							m_bMissionClear = true;
-							ReleaseMonster();
-							++m_iStage;;
-							m_iMission_TargetCount += 20;
+							ReleaseMonster();						
+							m_iMission_TargetCount += 10;
 							m_iMissionCount = 0;
 							break;
 						}

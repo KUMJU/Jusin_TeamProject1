@@ -4,8 +4,10 @@
 #include"AbstractFactory.h"
 #include"Wave.h"
 #include"Bomb.h"
+#include "Shield.h"
 
-CPlayer::CPlayer() : m_pBullet(nullptr), m_bType(BT_BASIC), m_debTime(0), m_skillCool(0), m_skillType(ST_WAVE), m_iLife(3), m_Skill_Level(1), m_iPlrState(PS_BASIC)
+
+CPlayer::CPlayer() : m_pBullet(nullptr), m_bType(BT_BASIC), m_debTime(0), m_skillCool(0), m_skillType(ST_WAVE), m_iLife(3), m_Skill_Level(1), m_iPlrState(PS_BASIC) , m_fDistance(0.f)
 {
 	m_bIsPlr = true;
 
@@ -24,6 +26,8 @@ void CPlayer::Initialize()
 	m_fSpeed = 5.f;
 	m_debTime = GetTickCount64();
 	m_skillCool = GetTickCount64();
+	m_fAngle = 0.f;
+
 }
 
 int CPlayer::Update()
@@ -147,7 +151,7 @@ void CPlayer::Key_Input(void)
 		}
 	}
 
-	if (GetAsyncKeyState('R'))
+	if (GetAsyncKeyState('E'))
 	{
 		if (m_Skill_Level == 1)
 		{
@@ -165,4 +169,21 @@ void CPlayer::Key_Input(void)
 			}
 		}
 	}
+
+	if (GetAsyncKeyState('Q'))
+	{
+		if (m_skillCool + 1000 < GetTickCount64()) {
+			m_SkillSlot->push_back(Create_Shield());
+			m_skillCool = GetTickCount64();
+		}
+	}
+}
+
+CObj* CPlayer::Create_Shield()
+{
+	CObj* pShield = CAbstractFactory::CreateObj<CShield>();
+
+	pShield->Set_Target(this);
+
+	return pShield;
 }

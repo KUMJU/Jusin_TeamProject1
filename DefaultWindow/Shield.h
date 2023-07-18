@@ -14,7 +14,7 @@ public:
 	virtual void Late_Update();
 	
 private:
-
+	float			m_fDistance;
 
 };
 

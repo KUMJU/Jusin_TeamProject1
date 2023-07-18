@@ -16,7 +16,7 @@ bool CCollisionMgr::Check_Sphere(CObj* pDst, CObj* pSrc)
 
 	float		fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
 
-	float		fRadius = (pDst->Get_Info().fCX + pSrc->Get_Info().fCX) * 0.5f;
+	float		fRadius = (pDst->Get_Info().fCY + pSrc->Get_Info().fCX) * 0.5f;
 
 	return fRadius >= fDiagonal;
 }

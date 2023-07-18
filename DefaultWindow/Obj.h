@@ -27,6 +27,10 @@ public:
 	virtual RECT		GetRect();
 	void	Set_Dead() { m_bDead = true; }
 
+	void	Set_Target(CObj* pTarget) { m_pTarget = pTarget; }
+	void	Set_Angle(float _fAngle) { m_fAngle = _fAngle; }
+
+
 protected:
 	 void		Update_Rect();
 
@@ -38,6 +42,9 @@ protected:
 	bool		m_bDead;
 	bool		m_bIsPlr;
 	float		m_fSpeed;
+
+	float		m_fAngle;
+	CObj*		m_pTarget;
 
 };
 
