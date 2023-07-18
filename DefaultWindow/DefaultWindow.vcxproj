@@ -157,6 +157,7 @@
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ReflectBullet.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SideBullet.h" />
     <ClInclude Include="Skill.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ReflectBullet.cpp" />
     <ClCompile Include="SideBullet.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="stdafx.cpp">

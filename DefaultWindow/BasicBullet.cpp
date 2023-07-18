@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "BasicBullet.h"
 
-BasicBullet::BasicBullet(DIRECTION _dir, float _position)
+BasicBullet::BasicBullet(DIRECTION _dir, float _position, bool _isPlr)
 {
 	m_Dir = _dir;
 	m_fPosition = _position;

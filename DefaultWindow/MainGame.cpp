@@ -130,6 +130,15 @@ void CMainGame::Render(void)
 
 	RendMission(1);
 
+	TCHAR		szLife[32] = L"";
+
+	wsprintf(szLife, L"∂Û¿Ã«¡:");
+	TextOut(m_DC, 10, 30, szLife, lstrlen(szLife));
+
+	wsprintf(szLife, L"%d", dynamic_cast<CPlayer*>(m_ObjList[OBJ_PLAYER].front())->GetLife());
+	TextOut(m_DC, 65, 30, szLife, lstrlen(szLife));
+
+
 }
 
 
@@ -142,12 +151,11 @@ void CMainGame::LateUpdate(void)
 			iter->Late_Update();
 	}
 
-	//CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc1, BT_BASIC);
-	//CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc2, BT_TWOWAY);
-	//CCollisionMgr::tempCollision(m_ObjList[OBJ_PLAYER].front(), rc3, BT_TRIPLE);
-	//CCollisionMgr::tempCollision2(m_ObjList[OBJ_PLAYERBULLET], rc3);
 
 	CCollisionMgr::Collision_Sphere(m_ObjList[OBJ_PLAYERBULLET], m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MONSTER]);
+	CCollisionMgr::PlayerCollision(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MOSTERBULLET]);
+
 }
 
 void CMainGame::RendMission(int _Stage)

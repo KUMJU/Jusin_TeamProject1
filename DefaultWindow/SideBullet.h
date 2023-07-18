@@ -5,7 +5,7 @@ class SideBullet : public CBullet
 {
 public:
 
-	SideBullet(DIRECTION _dir, float _position);
+	SideBullet(DIRECTION _dir, float _position, bool _isPlr);
 	~SideBullet();
 
 public:

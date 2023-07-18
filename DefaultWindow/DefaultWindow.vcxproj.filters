@@ -58,6 +58,9 @@
     <Filter Include="01. Obj\04. Mouse">
       <UniqueIdentifier>{1ba44962-bfdb-4d3c-9f93-e98deec17019}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Bullet\02.ReflectionBullet">
+      <UniqueIdentifier>{11c4187d-f96e-48c5-a444-5f5879451dd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -117,6 +120,9 @@
     <ClInclude Include="Mouse.h">
       <Filter>01. Obj\04. Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="ReflectBullet.h">
+      <Filter>01. Obj\01. Bullet\02.ReflectionBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>01. Obj\04. Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectBullet.cpp">
+      <Filter>01. Obj\01. Bullet\02.ReflectionBullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

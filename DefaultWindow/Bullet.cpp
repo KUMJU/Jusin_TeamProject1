@@ -15,8 +15,13 @@ void CBullet::Initialize()
 {
 	m_tInfo.fCX = 15.f;
 	m_tInfo.fCY = 15.f;
-	m_fSpeed = 15.f;
 
+	if (m_bIsPlr) {
+		m_fSpeed = 15.f;
+	}
+	else {
+		m_fSpeed = 3.f;
+	}
 	switch (m_Dir)
 	{
 	case DIR_LEFT:
@@ -38,10 +43,24 @@ void CBullet::Initialize()
 
 void CBullet::Render(HDC hDC)
 {
-	Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	if (true == m_bIsPlr) {
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	}
+	else {
+		Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	}
 }
 
 void CBullet::Release()
 {
+}
+
+void CBullet::Late_Update()
+{
+	if (m_tRect.left <= 100 || m_tRect.top <= 100 ||
+		m_tRect.right >= WINCX - 100 || m_tRect.bottom >= WINCY - 100) {
+
+		__super::Set_Dead();
+	}
 }
 

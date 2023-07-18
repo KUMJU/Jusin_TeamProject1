@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "SideBullet.h"
 
-SideBullet::SideBullet(DIRECTION _dir, float _position)
+SideBullet::SideBullet(DIRECTION _dir, float _position, bool _isPlr)
 {
 	m_Dir = _dir;
 	m_fPosition = _position;

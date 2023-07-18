@@ -18,6 +18,9 @@ public:
 	void	Set_Bullet(list<CObj*>* pBullet) { m_pBullet = pBullet; }
 	void	Set_BulletType(BULLETTYPE _btype) { m_bType = _btype; };
 	void	Set_Skill(list<CObj*>* _skill) { m_SkillSlot = _skill; };
+	void	OnAttacked();
+	void	CheckPlayerPosition();
+	int		GetLife() { return m_iLife; };
 
 private:
 	void	Key_Input(void);
@@ -30,5 +33,11 @@ private:
 	SKILLTYPE			m_skillType;
 	DWORD				m_debTime;
 	DWORD				m_skillCool;
+	DWORD				m_dSuperArmorTime;
+
+	int					m_iLife;
+	COLORREF			m_PlrColor;
+
+
 };
 

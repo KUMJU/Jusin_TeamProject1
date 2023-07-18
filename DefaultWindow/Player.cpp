@@ -5,8 +5,10 @@
 #include"Wave.h"
 #include"Bomb.h"
 
-CPlayer::CPlayer() : m_pBullet(nullptr) , m_bType(BT_BASIC), m_debTime(0) , m_skillCool(0) , m_skillType(ST_WAVE)
+CPlayer::CPlayer() : m_pBullet(nullptr) , m_bType(BT_BASIC), m_debTime(0) , m_skillCool(0) , m_skillType(ST_WAVE) , m_iLife(3)
 {
+	m_bIsPlr = true;
+
 }
 
 CPlayer::~CPlayer()
@@ -16,6 +18,8 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
+	m_dSuperArmorTime = GetTickCount64();
+	m_PlrColor = RGB(50, 50, 200);
 	m_tInfo = { WINCX / 2.f, WINCY / 2.f, 50.f, 50.f };
 	m_fSpeed = 5.f;
 	m_debTime = GetTickCount64();
@@ -25,6 +29,7 @@ void CPlayer::Initialize()
 int CPlayer::Update()
 {
 	Key_Input();
+	CheckPlayerPosition();
 
    __super::Update_Rect();
 
@@ -38,15 +43,47 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render(HDC hDC)
 {
+	HBRUSH myBrush = (HBRUSH)CreateSolidBrush(m_PlrColor);
+	HBRUSH oldBrush = (HBRUSH)SelectObject(hDC, myBrush);
 	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+	SelectObject(hDC, oldBrush);
+	DeleteObject(myBrush);
 }
 
 void CPlayer::Release()
 {
 }
 
+void CPlayer::OnAttacked()
+{
+	if (m_dSuperArmorTime + 500 < GetTickCount64()) {
+		--m_iLife;
+		m_dSuperArmorTime = GetTickCount64();
+	}
+}
+
+
+void CPlayer::CheckPlayerPosition()
+{
+
+	if (m_tInfo.fX - 25.f <= 100) {
+		m_tInfo.fX = 125.f;
+	}
+	if (m_tInfo.fX + 25.f >= 700) {
+		m_tInfo.fX = WINCX - 125;
+	}
+	if (m_tInfo.fY - 25.f <= 100) {
+		m_tInfo.fY = 125.f;
+	}
+	if (m_tInfo.fY + 25.f >= 500) {
+		m_tInfo.fY = WINCY - 125;
+	}
+
+}
+
+
 void CPlayer::Key_Input(void)
-{	
+{
 	if (GetAsyncKeyState(VK_RIGHT))
 		m_tInfo.fX += m_fSpeed;
 
@@ -62,15 +99,15 @@ void CPlayer::Key_Input(void)
 	if (GetAsyncKeyState('W'))
 	{
 		if (m_debTime + 300 < GetTickCount64()) {
-			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY,m_pBullet,DIR_UP);
+			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet, DIR_UP, m_bIsPlr);
 			m_debTime = GetTickCount64();
-		}	
+		}
 	}
 
 	if (GetAsyncKeyState('A'))
 	{
 		if (m_debTime + 300 < GetTickCount64()) {
-			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet,DIR_LEFT);
+			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet, DIR_LEFT, m_bIsPlr);
 			m_debTime = GetTickCount64();
 		}
 	}
@@ -78,14 +115,14 @@ void CPlayer::Key_Input(void)
 	if (GetAsyncKeyState('S'))
 	{
 		if (m_debTime + 300 < GetTickCount64()) {
-			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet,DIR_DOWN);
+			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet, DIR_DOWN, m_bIsPlr);
 			m_debTime = GetTickCount64();
 		}
 	}
 	if (GetAsyncKeyState('D'))
 	{
 		if (m_debTime + 300 < GetTickCount64()) {
-			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet,DIR_RIGHT);
+			CAbstractFactory::CreateBullet(m_bType, m_tInfo.fX, m_tInfo.fY, m_pBullet, DIR_RIGHT, m_bIsPlr);
 			m_debTime = GetTickCount64();
 		}
 	}

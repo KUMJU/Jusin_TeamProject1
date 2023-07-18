@@ -36,6 +36,7 @@ protected:
 	DIRECTION	m_eDir;
 
 	bool		m_bDead;
+	bool		m_bIsPlr;
 	float		m_fSpeed;
 
 };

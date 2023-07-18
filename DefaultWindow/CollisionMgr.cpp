@@ -35,3 +35,14 @@ void CCollisionMgr::Collision_Sphere(list<CObj*> Dst, list<CObj*> Src)
 		}
 	}
 }
+
+void CCollisionMgr::PlayerCollision(CObj* Dst, list<CObj*> Src)
+{
+	for (auto& SrcList : Src)
+	{
+		if (Check_Sphere(Dst, SrcList))
+		{
+			dynamic_cast<CPlayer*>(Dst)->OnAttacked();
+		}
+	}
+}
